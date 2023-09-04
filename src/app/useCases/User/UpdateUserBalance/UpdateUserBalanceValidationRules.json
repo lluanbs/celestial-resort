@@ -1,0 +1,20 @@
+{
+    "user_id": {
+        "type": "string",
+        "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+        "isNotEmpty": true,
+        "errorMessage": {
+            "isNotEmpty": "The user_id field cannot be empty.",
+            "format": "The user_id field must be of type string and a uuid."
+        }
+    },
+    "user_balance": {
+        "type": "number",
+        "minimum": 1,
+        "isNotEmpty": true,
+        "errorMessage": {
+            "isNotEmpty": "The user_balance field cannot be empty.",
+            "format": "The user_balance field must be of type number."
+        }
+    }
+}

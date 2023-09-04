@@ -1,0 +1,29 @@
+{
+    "user_name": {
+        "type": "string",
+        "isNotEmpty": true,
+        "errorMessage": {
+            "isNotEmpty": "The user_name field cannot be empty.",
+            "format": "The user_name field must be of type string."
+        }
+    },
+    "email_address": {
+        "type": "string",
+        "isNotEmpty": true,
+        "pattern": "^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$",
+        "minLength": 1,
+        "errorMessage": {
+            "isNotEmpty": "The email_address field cannot be empty.",
+            "format": "The email_address field must be of type string and a valid email."
+        }
+    },
+    "password": {
+        "type": "string",
+        "isNotEmpty": true,
+        "minLength": 1,
+        "errorMessage": {
+            "isNotEmpty": "The password field cannot be empty.",
+            "format": "The password field must be of type string."
+        }
+    }
+}

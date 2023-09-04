@@ -1,0 +1,18 @@
+{
+    "room_number": {
+        "type": "string",
+        "isNotEmpty": true,
+        "errorMessage": {
+            "isNotEmpty": "The room_number field cannot be empty.",
+            "format": "The room_number field must be a string type and a uuid."
+        }
+    },
+    "room_price": {
+        "type": "number",
+        "isNotEmpty": true,
+        "errorMessage": {
+            "isNotEmpty": "The room_price field cannot be empty.",
+            "format": "The room_price field must be a string type."
+        }
+    }
+}

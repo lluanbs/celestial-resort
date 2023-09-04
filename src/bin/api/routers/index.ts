@@ -1,0 +1,11 @@
+import { Router } from "express";
+import { ApiResponse } from "../../utils/ApiResponse";
+import { reservationRouters } from "./Reservation";
+import { roomRouters } from "./Room";
+import { userRouters } from "./User";
+export const mainRouters = Router();
+mainRouters.get('/health', (_, res) => ApiResponse.success(res, 'Server is healthy!'));
+mainRouters.post('/health', (_, res) => ApiResponse.success(res, 'Server is healthy!'));
+mainRouters.use(userRouters);
+mainRouters.use(reservationRouters);
+mainRouters.use(roomRouters);

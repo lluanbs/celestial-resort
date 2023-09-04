@@ -1,0 +1,51 @@
+{
+    "user_id": {
+        "type": "string",
+        "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+        "isNotEmpty": true,
+        "errorMessage": {
+            "isNotEmpty": "The user_id field cannot be empty.",
+            "format": "The user_id field must be a string type and a uuid."
+        }
+    },
+    "user_name": {
+        "type": "string",
+        "isNotEmpty": true,
+        "errorMessage": {
+            "isNotEmpty": "The user_name field cannot be empty.",
+            "format": "The user_name field must be a string type."
+        }
+    },
+    "rooms": {
+        "type": "array",
+        "isNotEmpty": true,
+        "items": {
+            "type": "string"
+        },
+        "errorMessage": {
+            "isNotEmpty": "The rooms field cannot be empty.",
+            "format": "The rooms field must be an array.",
+            "items": "Each item in the rooms array must be a string type."
+        }
+    },
+    "check_in_date": {
+        "type": "string",
+        "isNotEmpty": true,
+        "pattern": "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4} ([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$",
+        "errorMessage": {
+            "isNotEmpty": "The check_in_date field cannot be empty.",
+            "format": "The check_in_date field must be a string type.",
+            "pattern": "The check_in_date must be in the format dd/MM/yyyy HH:mm:ss."
+        }
+    },
+    "check_out_date": {
+        "type": "string",
+        "isNotEmpty": true,
+        "pattern": "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4} ([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$",
+        "errorMessage": {
+            "isNotEmpty": "The check_out_date field cannot be empty.",
+            "format": "The check_out_date field must be a string type.",
+            "pattern": "The check_out_date must be in the format dd/MM/yyyy HH:mm:ss."
+        }
+    }
+}

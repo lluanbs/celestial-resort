@@ -1,0 +1,14 @@
+import { UserRepository } from "../../repositories/UserRepository";
+import { AuthenticateUserController } from "./AuthenticateUser/AuthenticateUserController";
+import { AuthenticateUserUseCase } from "./AuthenticateUser/AuthenticateUserUseCase";
+import { CreateUserController } from "./CreateUser/CreateUserController";
+import { CreateUserUseCase } from "./CreateUser/CreateUserUseCase";
+import { UpdateUserBalanceController } from "./UpdateUserBalance/UpdateUserBalanceController";
+import { UpdateUserBalanceUseCase } from "./UpdateUserBalance/UpdateUserBalanceUseCase";
+const userRepository = new UserRepository();
+export const createUserUseCase = new CreateUserUseCase(userRepository);
+export const createUserController = new CreateUserController(createUserUseCase);
+export const updateUserBalanceUseCase = new UpdateUserBalanceUseCase(userRepository);
+export const updateUserBalanceController = new UpdateUserBalanceController(updateUserBalanceUseCase);
+export const authenticateUserUseCase = new AuthenticateUserUseCase(userRepository);
+export const authenticateUserController = new AuthenticateUserController(authenticateUserUseCase);

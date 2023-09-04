@@ -1,0 +1,43 @@
+{
+	"compilerOptions": {
+		"target": "es2020",
+		"moduleResolution": "node",
+		"module": "commonjs",
+		"lib": [
+			"es2020"
+		],
+		"outDir": "./dist",
+		"rootDir": "./src",
+		"rootDirs": [
+			"./src"
+		],
+		"typeRoots": [
+			"./node_modules/@types",
+			"./src/@types"
+		],
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"sourceMap": true,
+		"allowJs": true,
+		"strict": true,
+		"strictPropertyInitialization": false,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"noImplicitThis": true,
+		"resolveJsonModule": true,
+		"alwaysStrict": true,
+		"removeComments": true,
+		"noImplicitReturns": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true
+	},
+	"ts-node": {
+		"files": true
+	},
+	"include": [
+		"src/**/*"
+, "src/bin/utils/SecureHash.ts"	]
+}
