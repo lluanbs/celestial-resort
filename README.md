@@ -40,7 +40,28 @@ npm install
 
 1. Renomeie o arquivo .env.example para .env.
 2. Preencha as variáveis de ambiente no arquivo .env:
+```
+#SERVER
+PORT_LISTENER=32023
+API_JSON_LIMIT=50mb
 
+#DATABASE
+MONGODB_URL=mongodb://localhost:27017/
+MONGODB_DB_NAME=celestialResortDb
+MONGODB_DEBUG=true
+SQLITE_DATABASE_PATH='/logs';
+SQLITE_DEBUG=true
+
+#JWT
+API_KEY=edbda427-4839-4ca2-8bfc-a060829c4c36
+API_KEY_EXPIRE_IN_SEC=3600s
+API_KEY_REFRESH_DAYS=30d
+API_ISSUER=http://localhost:32023/
+API_AUDIENCE=test
+
+#REDIS
+REDIS_URL=redis://127.0.0.1:6379/0
+```
 ## Execução
 
 # Realizar o processo de build da aplicação
