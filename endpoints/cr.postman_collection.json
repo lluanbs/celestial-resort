@@ -1,0 +1,350 @@
+{
+	"info": {
+		"_postman_id": "02d7ceed-be7d-45a5-bdf0-58ec02d59e5d",
+		"name": "Celestial Resort",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28829636",
+		"_collection_link": "https://itzal-tech.postman.co/workspace/Team-Workspace~8b7a162c-dff2-4d17-8af9-845f3a880a72/collection/28829636-02d7ceed-be7d-45a5-bdf0-58ec02d59e5d?action=share&source=collection_link&creator=28829636"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Authenticate User (Login)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"access_token\", res.data.access_token);\r",
+									"pm.environment.set('user_id', res.data.user_id);\r",
+									"pm.environment.set('user_name', res.data.user_name);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email_address\": \"Maxie.Skiles@yahoo.com\", \r\n    \"password\": \"1346798520\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/user/authenticate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User Account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_name\": \"{{$randomNamePrefix}} {{$randomNameSuffix}}\",\r\n    \"email_address\": \"{{$randomEmail}}\",\r\n    \"password\": \"1346798520\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/user/account",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Balance",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"user_id\": \"{{user_id}}\",\r\n   \"user_balance\": 60000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/user/balance",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"balance"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reservation",
+			"item": [
+				{
+					"name": "Create Reservation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = JSON.parse(responseBody);\r",
+									"if(res.data) pm.environment.set(\"reservation_id\", res.data.id);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": \"{{user_id}}\",\r\n    \"user_name\": \"{{user_name}}\",\r\n    \"rooms\": [\r\n        \"abeaa01d-46bc-47a3-bccc-e9e87079bdfe\",\r\n        \"320839f8-dd34-472c-91bc-2948b9b372db\"\r\n    ],\r\n    \"check_in_date\": \"12/11/1997 12:00:00\",\r\n    \"check_out_date\": \"12/11/1997 13:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/reservation",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Payment Confirmation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "reservation_id",
+									"value": "{{reservation_id}}",
+									"type": "text"
+								},
+								{
+									"key": "payment_receipt",
+									"type": "file",
+									"src": "/C:/Users/lluan/Downloads/Documents/dummy.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/reservation/verification",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reservation",
+								"verification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Download Reservation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"reservation_id\": \"{{reservation_id}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/reservation/download",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reservation",
+								"download"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check-in Reservation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"reservation_id\": \"{{reservation_id}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/reservation/checkin",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reservation",
+								"checkin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Room",
+			"item": [
+				{
+					"name": "Create Room",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"room_number\": \"{{$randomInt}}\",\r\n    \"room_price\": {{$randomPrice}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/room",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"room"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Health Server",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/health",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
