@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  platform:
+    build: .
+    ports:
+      - '32023:32023'
+    container_name: celestial-resort
+    environment:
+    - PORT_LISTENER=32023
+    - API_JSON_LIMIT=50mb
+    - MONGODB_URL=mongodb://localhost:27017/
+    - MONGODB_DB_NAME=celestialResortDb
+    - MONGODB_DEBUG=true
+    - SQLITE_DATABASE_PATH='/logs';
+    - SQLITE_DEBUG=true
+    - API_KEY=4aea1c63051b4d22bf25fdd604fd51171e58a4944f9d47259aa8e9837ccaa453
+    - API_KEY_EXPIRE_IN_SEC=3600s
+    - API_KEY_REFRESH_DAYS=30d
+    - API_ISSUER=http://localhost:32023/
+    - API_AUDIENCE=test
+    - REDIS_URL=redis://127.0.0.1:6379/0
