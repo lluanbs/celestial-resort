@@ -43,6 +43,11 @@ npm install
 
 ## Execução
 
+# Realizar o processo de build da aplicação
+```bash
+npm run build
+```
+
 # Para iniciar a API
 ```bash
 npm run start
